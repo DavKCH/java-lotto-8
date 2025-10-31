@@ -35,6 +35,10 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumStrInput = Console.readLine();
         int bonusNumber = lottoBonusNumValidate(bonusNumStrInput, winNumbers);
+
+
+        LottoGame lottoGame = new LottoGame(lottoBuyCount, winNumbers, bonusNumber, lottoRepository.getLottoList());
+        lottoGame.gameStart();
     }
 
     private static int cashValidate(String cashStrInput) {
