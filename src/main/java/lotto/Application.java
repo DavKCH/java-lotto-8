@@ -10,6 +10,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         String cashStrInput = Console.readLine();
         int cash = cashValidate(cashStrInput);
+        int lottoBuyCount = lottoBuyValidate(cash);
     }
 
     private static int cashValidate(String cashStrInput) {
@@ -46,6 +47,16 @@ public class Application {
         return cash;
     }
 
+    private static int lottoBuyValidate(int cash) {
 
+        double decimalPoint  = cash / 1000.0;
+
+        if (decimalPoint % 1 != 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int lottoBuyCount = (int) decimalPoint;
+        return lottoBuyCount;
+    }
 
 }
