@@ -13,16 +13,20 @@ public class LottoGame {
 
     private final List<Lotto> lottoList;
 
+    // 구매 용지 마다, 당첨 번호 및 보너스 번호가 몇개씩 있는지 확인
     private final List<Integer> winNumberCount = new ArrayList<>();
     private final List<Integer> bonusNumberCount = new ArrayList<>();
 
+
+    // 당첨 횟수 카운트
     private int rankFiveCount;
     private int rankFourCount;
     private int rankThreeCount;
     private int rankTwoCount;
     private int rankOneCount;
-    private double amountRate;
 
+
+    private double amountRate;
     private static final int LOTTO_PRICE = 1000;
 
     public LottoGame(int gameCount, int[] winNumbers, int bonusNumber, List<Lotto> lottoList) {
@@ -56,13 +60,12 @@ public class LottoGame {
     // ======== match Number Start ========
     private void matchNumber() {
         // 당첨 번호 체크
-        int count = 0;
         for (Lotto lotto : lottoList) {
+            int count = 0;
             for (int i = 0; i < winNumbers.length; i++) {
                 count += winNumberCheck(lotto, i);
             }
             winNumberCount.add(count);
-            count = 0;
         }
         // 보너스 번호 체크
         for (Lotto lotto : lottoList) {
@@ -72,14 +75,20 @@ public class LottoGame {
     }
 
     private int winNumberCheck(Lotto lotto, int i) {
-        if (lotto.getNumbers().contains(winNumbers[i])) {
+
+        boolean hasWinNumber = lotto.getNumbers().contains(winNumbers[i]);
+
+        if (hasWinNumber) {
             return 1;
         }
         return 0;
     }
 
     private int bonusNumberCheck(Lotto lotto) {
-        if(lotto.getNumbers().contains(bonusNumber)) {
+
+        boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+        if (hasBonusNumber) {
             return 1;
         }
         return 0;
