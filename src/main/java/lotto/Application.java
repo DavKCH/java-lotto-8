@@ -32,6 +32,9 @@ public class Application {
 
         int[] winNumbers = lottoWinNumValidate(winNumStrInput);
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumStrInput = Console.readLine();
+        int bonusNumber = lottoBonusNumValidate(bonusNumStrInput, winNumbers);
     }
 
     private static int cashValidate(String cashStrInput) {
@@ -141,6 +144,41 @@ public class Application {
         System.out.println();
 
         return winNumbers;
+    }
+
+    private static int lottoBonusNumValidate(String bonusNumStrInput, int[] winNumbers) {
+        if (bonusNumStrInput == null) {
+            throw new IllegalArgumentException();
+        }
+
+        bonusNumStrInput = bonusNumStrInput.trim();
+        if (bonusNumStrInput.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
+        if (bonusNumStrInput.startsWith("0")) {
+            throw new IllegalArgumentException();
+        }
+
+        String trueStr = "^[0-9]*$";
+        if (!bonusNumStrInput.matches(trueStr)) {
+            throw new IllegalArgumentException();
+        }
+
+        int bonusNumber = Integer.parseInt(bonusNumStrInput);
+
+        if (bonusNumber >= 46) {
+            throw new IllegalArgumentException();
+        }
+
+        for (int winNumber : winNumbers) {
+            if (winNumber == bonusNumber) {
+                throw new IllegalArgumentException();
+            }
+        }
+        System.out.println();
+
+        return bonusNumber;
     }
 
 }
