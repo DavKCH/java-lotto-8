@@ -8,8 +8,6 @@ import lotto.validate.LottoBonusNumValidate;
 import lotto.validate.LottoBuyValidate;
 import lotto.validate.LottoWinNumValidate;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class Application {
@@ -22,19 +20,11 @@ public class Application {
         String cashStrInput = Console.readLine();
         CashValidate.start(cashStrInput);
         int cash = LottoRegistry.getCash();
-
         LottoBuyValidate.start(cash);
         System.out.println();
 
         int lottoBuyCount = LottoRegistry.getLottoBuyCount();
-        for (int i = 0; i < lottoBuyCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
-                    .stream()
-                    .sorted().toList();
-
-            lottoRepository.add(new Lotto(numbers));
-        }
-        lottoRepository.lottoCatalog();
+        lottoBuyLogic(lottoBuyCount);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winNumStrInput = Console.readLine();
@@ -54,7 +44,16 @@ public class Application {
         lottoGame.gameStart();
     }
 
+    private static void lottoBuyLogic(int lottoBuyCount) {
+        for (int i = 0; i < lottoBuyCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted().toList();
 
+            lottoRepository.add(new Lotto(numbers));
+        }
+        lottoRepository.lottoCatalog();
+    }
 
 
 }

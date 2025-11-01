@@ -7,7 +7,8 @@ public enum LottoAmount {
     RANK_3(1_500_000),
     RANK_4(50_000),
     RANK_5(5_000),
-    PRICE(1_000);
+    PRICE(1_000),
+    LIMIT_PRICE(50_000);
 
     private final int amount;
 

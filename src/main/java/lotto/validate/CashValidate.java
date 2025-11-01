@@ -1,6 +1,11 @@
 package lotto.validate;
 
+import lotto.LottoAmount;
 import lotto.LottoRegistry;
+import lotto.exception.LottoErrorException;
+
+import static lotto.LottoAmount.LIMIT_PRICE;
+import static lotto.LottoAmount.PRICE;
 
 public abstract class CashValidate {
 
@@ -8,12 +13,12 @@ public abstract class CashValidate {
     private static void cashNullOrEmpty(String cashStrInput) {
 
         if (cashStrInput == null) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("잘못된 값을  입력 하셨습니다");
         }
 
         cashStrInput = cashStrInput.trim();
         if (cashStrInput.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("잘못된 값을  입력 하셨습니다");
         }
 
     }
@@ -21,7 +26,7 @@ public abstract class CashValidate {
     private static void cashStartFalse(String cashStrInput) {
 
         if (cashStrInput.startsWith("0")) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("처음에 '0'을 입력 하실수 없습니다.");
         }
     }
 
@@ -29,7 +34,7 @@ public abstract class CashValidate {
 
         String trueStr = "^[0-9]*$";
         if (!cashStrInput.matches(trueStr)) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("숫자만 가능 합니다.");
         }
     }
 
@@ -37,11 +42,11 @@ public abstract class CashValidate {
         int cash = Integer.parseInt(cashStrInput);
 
         if (cash < 1000 ) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("로또 가격은 " + PRICE.getAmount() + "원 입니다.");
         }
 
         if (cash > 50001) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("로또 최대 구매 횟수는 " + LIMIT_PRICE.getAmount() + "원 입니다.");
         }
 
     }
