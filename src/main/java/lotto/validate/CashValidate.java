@@ -1,6 +1,5 @@
 package lotto.validate;
 
-import lotto.LottoAmount;
 import lotto.LottoRegistry;
 import lotto.exception.LottoErrorException;
 
@@ -8,7 +7,6 @@ import static lotto.LottoAmount.LIMIT_PRICE;
 import static lotto.LottoAmount.PRICE;
 
 public abstract class CashValidate {
-
 
     private static void cashNullOrEmpty(String cashStrInput) {
 
@@ -39,6 +37,7 @@ public abstract class CashValidate {
     }
 
     private static void cashRangeFalse(String cashStrInput) {
+
         int cash = Integer.parseInt(cashStrInput);
 
         if (cash < 1000 ) {

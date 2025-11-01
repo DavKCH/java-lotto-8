@@ -1,6 +1,5 @@
 package lotto.validate;
 
-import lotto.LottoAmount;
 import lotto.LottoRegistry;
 import lotto.exception.LottoErrorException;
 

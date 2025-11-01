@@ -1,14 +1,12 @@
 package lotto;
 
-public class LottoRegistry {
+public abstract class LottoRegistry {
 
     private static int cash;
     private static int lottoBuyCount;
     private static int[] winNumbers;
     private static int bonusNumber;
 
-    private LottoRegistry() {
-    }
 
     public static void setCash(int cash) {
         LottoRegistry.cash = cash;

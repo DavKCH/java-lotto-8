@@ -7,10 +7,14 @@ import static lotto.LottoAmount.*;
 
 public class LottoGame {
 
+    // 로또 구매 횟수
     private final int gameCount;
+    // 당첨 번호
     private final int[] winNumbers;
+    // 보너스 번호
     private final int bonusNumber;
 
+    // 로또 용지들
     private final List<Lotto> lottoList;
 
     // 구매 용지 마다, 당첨 번호 및 보너스 번호가 몇개씩 있는지 확인
@@ -25,7 +29,7 @@ public class LottoGame {
     private int rankTwoCount;
     private int rankOneCount;
 
-
+    // 수익률
     private double amountRate;
 
 
