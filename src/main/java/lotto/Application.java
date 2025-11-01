@@ -16,52 +16,25 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        while (true) {
-            try {
-                buyAmountLogic();
-                break;
-            }
-            catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
 
-        while (true) {
-            try {
-                winNumberLogic();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        logicStart(()-> buyAmountLogic());
+        logicStart(()-> winNumberLogic());
+        logicStart(()-> bonusNumLogic());
+        logicStart(()-> gameLogic());
 
-        while (true) {
-            try {
-                bonusNumLogic();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        while (true) {
-            try {
-                gameLogic();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
-    private static void gameLogic() {
-        int lottoBuyCount = LottoRegistry.getLottoBuyCount();
-        int[] winNumbers = LottoRegistry.getWinNumbers();
-        int bonusNumber = LottoRegistry.getBonusNumber();
-        List<Lotto> lottoList = lottoRepository.getLottoList();
+    private static void logicStart(Runnable logic) {
 
-        LottoGame lottoGame = new LottoGame(lottoBuyCount, winNumbers, bonusNumber, lottoList);
-        lottoGame.gameStart();
+        while (true) {
+            try {
+                logic.run();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private static void buyAmountLogic() {
@@ -100,6 +73,16 @@ public class Application {
         String bonusNumStrInput = Console.readLine();
         LottoBonusNumValidate.start(bonusNumStrInput, LottoRegistry.getWinNumbers());
         System.out.println();
+    }
+
+    private static void gameLogic() {
+        int lottoBuyCount = LottoRegistry.getLottoBuyCount();
+        int[] winNumbers = LottoRegistry.getWinNumbers();
+        int bonusNumber = LottoRegistry.getBonusNumber();
+        List<Lotto> lottoList = lottoRepository.getLottoList();
+
+        LottoGame lottoGame = new LottoGame(lottoBuyCount, winNumbers, bonusNumber, lottoList);
+        lottoGame.gameStart();
     }
 
     
