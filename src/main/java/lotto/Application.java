@@ -37,6 +37,7 @@ public class Application {
 
     }
 
+    // ======== buyAmountLogic Start ========
     private static void buyAmountLogic() {
         System.out.println("구입금액을 입력해 주세요.");
         String cashStrInput = Console.readLine();
@@ -59,7 +60,9 @@ public class Application {
         }
         lottoRepository.lottoCatalog();
     }
+    // ======== buyAmountLogic END ========
 
+    
     private static void winNumberLogic() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winNumStrInput = Console.readLine();
