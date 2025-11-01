@@ -19,13 +19,36 @@ public class Application {
         while (true) {
             try {
                 buyAmountLogic();
-                winNumberLogic();
-                bonusNumLogic();
-                gameLogic();
-
                 break;
             }
             catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                winNumberLogic();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                bonusNumLogic();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                gameLogic();
+                break;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
