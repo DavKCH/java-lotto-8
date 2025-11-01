@@ -4,6 +4,7 @@ public class LottoRegistry {
 
     private static int cash;
     private static int lottoBuyCount;
+    private static int[] winNumbers;
 
     private LottoRegistry() {
     }
@@ -22,5 +23,12 @@ public class LottoRegistry {
 
     public static int getLottoBuyCount() {
         return lottoBuyCount;
+    }
+
+    public static void setWinNumbers(int[] winNumbers) {
+        LottoRegistry.winNumbers = winNumbers;
+    }
+    public static int[] getWinNumbers() {
+        return winNumbers;
     }
 }
