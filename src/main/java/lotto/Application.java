@@ -16,6 +16,32 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        while (true) {
+            try {
+                buyAmountLogic();
+                winNumberLogic();
+                bonusNumLogic();
+                gameLogic();
+
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void gameLogic() {
+        int lottoBuyCount = LottoRegistry.getLottoBuyCount();
+        int[] winNumbers = LottoRegistry.getWinNumbers();
+        int bonusNumber = LottoRegistry.getBonusNumber();
+        List<Lotto> lottoList = lottoRepository.getLottoList();
+
+        LottoGame lottoGame = new LottoGame(lottoBuyCount, winNumbers, bonusNumber, lottoList);
+        lottoGame.gameStart();
+    }
+
+    private static void buyAmountLogic() {
         System.out.println("구입금액을 입력해 주세요.");
         String cashStrInput = Console.readLine();
         CashValidate.start(cashStrInput);
@@ -25,23 +51,6 @@ public class Application {
 
         int lottoBuyCount = LottoRegistry.getLottoBuyCount();
         lottoBuyLogic(lottoBuyCount);
-
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winNumStrInput = Console.readLine();
-        LottoWinNumValidate.start(winNumStrInput);
-
-        int[] winNumbers = LottoRegistry.getWinNumbers();
-        System.out.println();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumStrInput = Console.readLine();
-        LottoBonusNumValidate.start(bonusNumStrInput, winNumbers);
-        System.out.println();
-
-        int bonusNumber = LottoRegistry.getBonusNumber();
-
-        LottoGame lottoGame = new LottoGame(lottoBuyCount, winNumbers, bonusNumber, lottoRepository.getLottoList());
-        lottoGame.gameStart();
     }
 
     private static void lottoBuyLogic(int lottoBuyCount) {
@@ -53,6 +62,21 @@ public class Application {
             lottoRepository.add(new Lotto(numbers));
         }
         lottoRepository.lottoCatalog();
+    }
+
+    private static void winNumberLogic() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winNumStrInput = Console.readLine();
+        LottoWinNumValidate.start(winNumStrInput);
+
+        System.out.println();
+    }
+
+    private static void bonusNumLogic() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumStrInput = Console.readLine();
+        LottoBonusNumValidate.start(bonusNumStrInput, LottoRegistry.getWinNumbers());
+        System.out.println();
     }
 
 
