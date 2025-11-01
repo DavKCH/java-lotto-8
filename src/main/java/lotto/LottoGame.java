@@ -8,7 +8,7 @@ import static lotto.LottoAmount.*;
 public class LottoGame {
 
     // 로또 구매 횟수
-    private final int gameCount;
+    private final int lottoBuyCount;
     // 당첨 번호
     private final int[] winNumbers;
     // 보너스 번호
@@ -33,8 +33,8 @@ public class LottoGame {
     private double amountRate;
 
 
-    public LottoGame(int gameCount, int[] winNumbers, int bonusNumber, List<Lotto> lottoList) {
-        this.gameCount = gameCount;
+    public LottoGame(int lottoBuyCount, int[] winNumbers, int bonusNumber, List<Lotto> lottoList) {
+        this.lottoBuyCount = lottoBuyCount;
         this.winNumbers = winNumbers;
         this.bonusNumber = bonusNumber;
 
@@ -103,7 +103,7 @@ public class LottoGame {
 
     // ======== totalBallMatch Start ========
     private void totalBallMatch () {
-        for (int i = 0; i < gameCount; i++) {
+        for (int i = 0; i < lottoBuyCount; i++) {
             ballMatch(i);
         }
     }
