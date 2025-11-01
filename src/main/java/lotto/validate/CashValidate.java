@@ -44,8 +44,8 @@ public abstract class CashValidate {
             throw new LottoErrorException("로또 가격은 " + PRICE.getAmount() + "원 입니다.");
         }
 
-        if (cash > 50001) {
-            throw new LottoErrorException("로또 최대 구매 횟수는 " + LIMIT_PRICE.getAmount() + "원 입니다.");
+        if (cash > 50000) {
+            throw new LottoErrorException("로또 최대 구매 가격은 " + LIMIT_PRICE.getAmount() + "원 입니다.");
         }
 
     }
