@@ -36,6 +36,19 @@ class LottoWinNumValidateTest {
     }
 
     @Test
+    void 당첨번호가_1에서_45사이가_아니면_예외가_발생_한다() {
+        String winNumStrInput1 = "46";
+
+        assertThatThrownBy(() -> LottoWinNumValidate.start(winNumStrInput1))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String winNumStrInput2 = "0";
+
+        assertThatThrownBy(() -> LottoWinNumValidate.start(winNumStrInput2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 당첨번호_처음과_마지막_사이에_공백이면_예외가_발생_한다() {
         String winNumStrInput1 = "1,2,3,4, ,6";
 
