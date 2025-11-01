@@ -1,6 +1,9 @@
 package lotto.validate;
 
+import lotto.LottoAmount;
 import lotto.LottoRegistry;
+import lotto.exception.LottoErrorException;
+
 import static lotto.LottoAmount.PRICE;
 
 public abstract class LottoBuyValidate {
@@ -12,7 +15,7 @@ public abstract class LottoBuyValidate {
         double decimalPoint  = (double) cash / PRICE.getAmount();
 
         if (decimalPoint % 1 != 0) {
-            throw new IllegalArgumentException();
+            throw new LottoErrorException("구입 금액은 " + PRICE.getAmount() + "원 단위로 구매해 주세요.");
         }
     }
 
