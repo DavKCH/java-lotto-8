@@ -27,7 +27,7 @@ public class LottoGame {
 
 
     private double amountRate;
-    private static final int LOTTO_PRICE = 1000;
+
 
     public LottoGame(int gameCount, int[] winNumbers, int bonusNumber, List<Lotto> lottoList) {
         this.gameCount = gameCount;
@@ -134,7 +134,7 @@ public class LottoGame {
         int lastAmount = (RANK_1.getAmount() * rankOneCount) + (RANK_2.getAmount() * rankTwoCount)
                 + (RANK_3.getAmount() * rankThreeCount) + (RANK_4.getAmount() * rankFourCount) + (RANK_5.getAmount() * rankFiveCount);
         
-        int originalAmount = LOTTO_PRICE * lottoList.size();
+        int originalAmount = PRICE.getAmount() * lottoList.size();
 
         //수익률
         amountRate = ((double) lastAmount / originalAmount) * 100.0;

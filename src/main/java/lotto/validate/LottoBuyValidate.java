@@ -1,15 +1,15 @@
 package lotto.validate;
 
 import lotto.LottoRegistry;
+import static lotto.LottoAmount.PRICE;
 
 public abstract class LottoBuyValidate {
-
     private LottoBuyValidate() {
     }
 
     private static void lottoBuyValidate(int cash) {
 
-        double decimalPoint  = cash / 1000.0;
+        double decimalPoint  = (double) cash / PRICE.getAmount();
 
         if (decimalPoint % 1 != 0) {
             throw new IllegalArgumentException();
@@ -19,7 +19,7 @@ public abstract class LottoBuyValidate {
     public static void start(int cash) {
         lottoBuyValidate(cash);
 
-        double decimalPoint  = cash / 1000.0;
+        double decimalPoint  = (double) cash / PRICE.getAmount();
         int lottoBuyCount = (int) decimalPoint;
 
         LottoRegistry.setLottoBuyCount(lottoBuyCount);

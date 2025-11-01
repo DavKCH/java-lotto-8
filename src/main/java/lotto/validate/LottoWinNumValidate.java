@@ -34,20 +34,18 @@ public abstract class LottoWinNumValidate {
         }
     }
 
-    private static void winNumberTrimFalse(String winNumStrInput) {
-        String[] winNumStr = winNumStrInput.split(DELIMITER);
 
+    private static void winNumberInputFalse(String winNumStrInput) {
+
+        String[] winNumStr = winNumStrInput.split(DELIMITER);
         for (String strNum : winNumStr) {
             String trimNum = strNum.trim();
             if (trimNum.isEmpty()) {
                 throw new IllegalArgumentException();
             }
         }
-    }
 
-    private static void winNumberInputFalse(String winNumStrInput) {
         String trueStr = "^[0-9,]*$";
-
         if (!winNumStrInput.matches(trueStr)) {
             throw new IllegalArgumentException();
         }
@@ -63,7 +61,7 @@ public abstract class LottoWinNumValidate {
         }
     }
 
-    private static void winNumberLength(String winNumStrInput) {
+    private static void winNumberLengthFalse(String winNumStrInput) {
         String[] strNumbers = winNumStrInput.split(DELIMITER);
 
         if (strNumbers.length != WIN_NUMBER_COUNT) {
@@ -71,7 +69,7 @@ public abstract class LottoWinNumValidate {
         }
     }
 
-    private static void winNumberInRange(String winNumStrInput) {
+    private static void winNumberRangeFalse(String winNumStrInput) {
         int[] winNumbers = getNumbers(winNumStrInput);
 
         for (int winNumber : winNumbers) {
@@ -95,13 +93,12 @@ public abstract class LottoWinNumValidate {
         winNumbersNullOrEmpty(winNumStrInput);
 
         winNumberStartOrLastFalse(winNumStrInput);
-        winNumberTrimFalse(winNumStrInput);
-
         winNumberInputFalse(winNumStrInput);
+
         winNumberDuplicate(winNumStrInput);
 
-        winNumberLength(winNumStrInput);
-        winNumberInRange(winNumStrInput);
+        winNumberLengthFalse(winNumStrInput);
+        winNumberRangeFalse(winNumStrInput);
 
         int[] winNumbers = getNumbers(winNumStrInput);
         LottoRegistry.setWinNumbers(winNumbers);
