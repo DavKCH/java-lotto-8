@@ -18,9 +18,6 @@ public abstract class LottoBonusNumValidate {
     }
 
     private static void bonusNumberInputFalse(String bonusNumStrInput) {
-        if (bonusNumStrInput.startsWith("0")) {
-            throw new LottoErrorException("처음에 '0'을 입력 하실수 없습니다.");
-        }
 
         String trueStr = "^[0-9]*$";
         if (!bonusNumStrInput.matches(trueStr)) {
